@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("Hello World")
+        function getComputerChoice(){
+            compChoiceNum = Math.floor(Math.random() * 3)
+            if (compChoiceNum == 0){
+                return "rock"
+            } else if (compChoiceNum == 1){
+                return "paper"
+            } else {
+                return "scissors"
+            }
+        }
+
+        function getHumanChoice(){
+            let humanChoice = prompt('Rock, Paper, or Scissors? ')
+            return humanChoice;
+        }
+/*
+        function playRound(humanChoice,ComputerChoice){
+            let currentHumanChoice = humanChoice.toLowerCase();
+            let currentCompChoice = compChoice.toLowerCase();
+
+            if (currentCompChoice == 'rock' && currentHumanChoice == 'paper'){
+                humanWins();
+            } else if ((currentCompChoice == 'rock' && currentHumanChoice == 'scissors')){
+                computerWins();
+            } else if ((currentCompChoice == 'rock' && currentHumanChoice == 'rock')){
+                return console.log('this round is a tie')
+            }
+
+            else if (currentCompChoice == 'paper' && currentHumanChoice == 'scissors'){
+                humanWins();
+            } else if ((currentCompChoice == 'paper' && currentHumanChoice == 'rock')){
+                computerWins();
+            } else if ((currentCompChoice == 'paper' && currentHumanChoice == 'paper')){
+                return console.log('this round is a tie')
+            }
+
+            if (currentCompChoice == 'scissors' && currentHumanChoice == 'rock'){
+                humanWins();
+            } else if ((currentCompChoice == 'scissors' && currentHumanChoice == 'paper')){
+                computerWins();
+            } else if ((currentCompChoice == 'scissors' && currentHumanChoice == 'scissors')){
+                return console.log('this round is a tie')
+            }
+        }
+*/
+        function playGame(){
+            let humanScore = 0;
+            let computerScore = 0;
+
+            function computerWins(){
+                computerScore ++
+                return console.log('I win this time. Computer score is '+computerScore)
+            }
+            function humanWins(){
+                humanScore++
+                return console.log('You win this time. Human score is '+humanScore)
+            }
+
+            let compChoice = getComputerChoice()
+            console.log("I choose " + compChoice)
+            let humanChoice = getHumanChoice()
+            console.log("You chose " + humanChoice)
+
+
+            function playRound(humanChoice,ComputerChoice){
+                let currentHumanChoice = humanChoice.toLowerCase();
+                let currentCompChoice = compChoice.toLowerCase();
+
+                if (currentCompChoice == 'rock' && currentHumanChoice == 'paper'){
+                    humanWins();
+                } else if ((currentCompChoice == 'rock' && currentHumanChoice == 'scissors')){
+                    computerWins();
+                } else if ((currentCompChoice == 'rock' && currentHumanChoice == 'rock')){
+                    return console.log('this round is a tie')
+                }
+
+                else if (currentCompChoice == 'paper' && currentHumanChoice == 'scissors'){
+                    humanWins();
+                } else if ((currentCompChoice == 'paper' && currentHumanChoice == 'rock')){
+                    computerWins();
+                } else if ((currentCompChoice == 'paper' && currentHumanChoice == 'paper')){
+                    return console.log('this round is a tie')
+                }
+
+                if (currentCompChoice == 'scissors' && currentHumanChoice == 'rock'){
+                    humanWins();
+                } else if ((currentCompChoice == 'scissors' && currentHumanChoice == 'paper')){
+                    computerWins();
+                } else if ((currentCompChoice == 'scissors' && currentHumanChoice == 'scissors')){
+                    return console.log('this round is a tie')
+                }
+            }
+
+            for (i=0;i <5; i++){
+                playRound(humanChoice,compChoice)}
+
+            if (humanScore > computerScore){
+                return console.log('You win the game.')
+            } else if (computerScore > humanScore){
+                return console.log('I win.')
+            } else {return console.log('Our scores are equal, we draw.')}
+            
+        }
+        playGame()
+
+
+    </script>
+</body>
+</html>
