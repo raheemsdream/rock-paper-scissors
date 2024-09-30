@@ -66,13 +66,12 @@
                 return console.log('You win this time. Human score is '+humanScore)
             }
 
-            let compChoice = getComputerChoice()
-            console.log("I choose " + compChoice)
-            let humanChoice = getHumanChoice()
-            console.log("You chose " + humanChoice)
-
-
-            function playRound(humanChoice,ComputerChoice){
+            function playRound(){
+                let humanChoice = getHumanChoice()
+                    console.log("You chose " + humanChoice)
+                let compChoice = getComputerChoice()
+                    console.log("I chose " + compChoice)
+                
                 let currentHumanChoice = humanChoice.toLowerCase();
                 let currentCompChoice = compChoice.toLowerCase();
 
@@ -102,7 +101,7 @@
             }
 
             for (i=0;i <5; i++){
-                playRound(humanChoice,compChoice)}
+                playRound()}
 
             if (humanScore > computerScore){
                 return console.log('You win the game.')
