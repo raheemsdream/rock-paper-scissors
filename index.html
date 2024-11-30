@@ -4,10 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            display:flex;
+            flex-flow:column wrap;
+            justify-content:center;
+            align-items:center;
+            font-family:sans-serif;
+        }
+        button{
+            color:blueviolet;
+            background-color:lightskyblue;
+            border:0;
+            border-radius: 180px;
+            width:150px;
+            height:150px;
+            font-size:5rem;
+        }
+        #results, #computerChoiceDisplay{
+            font-size:2rem;
+        }
+
+    </style>
 </head>
 <body>
+    <h1>ROCK PAPER SCISSORS BATTLE!</h1>
+    <div class="choices">
+        <button id="rock" onclick= "playRound('rock')">👊</button>
+        <button id="paper" onclick= "playRound('paper')">🤚</button>
+        <button id="scissors" onclick= "playRound('scissors')">✌️</button>
+    </div>
+
+    <div id = "computerChoiceDisplay">
+        Computer:
+    </div>
+    <div id="results">
+        ITS A TIE
+    </div>
+
+    <div class="scoredisplay">
+        <p id="playerScore">Player Score: </p>
+        <p id="computerScore">Computer Score: </p>
+    </div>
+
+
+
     <script>
-        console.log("Hello World")
+        const computerChoiceDisplay = document.querySelector('#computerChoiceDisplay');
+        const humanChoiceDisplay = document.querySelector('humanChoiceDisplay')
+        const resultsDisplay = document.querySelector('#results');
+        const playerScoreDisplay = document.querySelector('#playerScore');
+        const computerScoreDisplay = document.querySelector('#computerScore');
+
         function getComputerChoice(){
             compChoiceNum = Math.floor(Math.random() * 3)
             if (compChoiceNum == 0){
@@ -18,101 +66,67 @@
                 return "scissors"
             }
         }
-
-        function getHumanChoice(){
-            let humanChoice = prompt('Rock, Paper, or Scissors? ')
-            return humanChoice;
-        }
-/*
-        function playRound(humanChoice,ComputerChoice){
+        playerScore = 0;
+        computerScore = 0;
+        function playRound(humanChoice){
+            compChoice = getComputerChoice();
+                
             let currentHumanChoice = humanChoice.toLowerCase();
             let currentCompChoice = compChoice.toLowerCase();
 
             if (currentCompChoice == 'rock' && currentHumanChoice == 'paper'){
-                humanWins();
+                result = 'You Win';
+                playerScore++
+                playerScore.textContent = `Player Score: ${playerScore}`;
+
             } else if ((currentCompChoice == 'rock' && currentHumanChoice == 'scissors')){
-                computerWins();
+                result = 'YOU LOSE';
+                computerScore++
+                computerScore.textContent = `Computer Score: ${computerScore}`;
             } else if ((currentCompChoice == 'rock' && currentHumanChoice == 'rock')){
-                return console.log('this round is a tie')
+                result = 'ITS A TIE';
             }
 
             else if (currentCompChoice == 'paper' && currentHumanChoice == 'scissors'){
-                humanWins();
+                result = 'You Win';
+                playerScore++
+                playerScore.textContent = `Player Score: ${playerScore}`;
             } else if ((currentCompChoice == 'paper' && currentHumanChoice == 'rock')){
-                computerWins();
+                result = 'YOU LOSE';
+                computerScore++
+                computerScore.textContent = `Computer Score: ${computerScore}`;
             } else if ((currentCompChoice == 'paper' && currentHumanChoice == 'paper')){
-                return console.log('this round is a tie')
+                result = 'ITS A TIE';
             }
 
             if (currentCompChoice == 'scissors' && currentHumanChoice == 'rock'){
-                humanWins();
+                result = 'You Win';
+                playerScore++
+                playerScore.textContent = `Player Score: ${playerScore}`;
             } else if ((currentCompChoice == 'scissors' && currentHumanChoice == 'paper')){
-                computerWins();
+                result = 'YOU LOSE';
+                computerScore++
+                computerScore.textContent = `Computer Score: ${computerScore}`;
             } else if ((currentCompChoice == 'scissors' && currentHumanChoice == 'scissors')){
-                return console.log('this round is a tie')
+                result = 'ITS A TIE';
             }
+
+
+            console.log(humanChoice,compChoice,result, computerScore,playerScore)
+            computerChoiceDisplay.textContent = `I chose ${compChoice}`;
+            resultsDisplay.textContent = result;
+            computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+            playerScoreDisplay.textContent= `Player Score: ${playerScore}`;
+
+            if (computerScore === 5){
+                resultsDisplay.textContent = 'I WIN THE GAME!'
+                computerChoiceDisplay.textContent = '😁😁😁😁😁'
+            } else if (playerScore === 5){
+                resultsDisplay.textContent = 'You won the game!';
+                computerChoiceDisplay.textContent = 'GGs 🙂'
+            }
+
         }
-*/
-        function playGame(){
-            let humanScore = 0;
-            let computerScore = 0;
-
-            function computerWins(){
-                computerScore ++
-                return console.log('I win this time. Computer score is '+computerScore)
-            }
-            function humanWins(){
-                humanScore++
-                return console.log('You win this time. Human score is '+humanScore)
-            }
-
-            function playRound(){
-                let humanChoice = getHumanChoice()
-                    console.log("You chose " + humanChoice)
-                let compChoice = getComputerChoice()
-                    console.log("I chose " + compChoice)
-                
-                let currentHumanChoice = humanChoice.toLowerCase();
-                let currentCompChoice = compChoice.toLowerCase();
-
-                if (currentCompChoice == 'rock' && currentHumanChoice == 'paper'){
-                    humanWins();
-                } else if ((currentCompChoice == 'rock' && currentHumanChoice == 'scissors')){
-                    computerWins();
-                } else if ((currentCompChoice == 'rock' && currentHumanChoice == 'rock')){
-                    return console.log('this round is a tie')
-                }
-
-                else if (currentCompChoice == 'paper' && currentHumanChoice == 'scissors'){
-                    humanWins();
-                } else if ((currentCompChoice == 'paper' && currentHumanChoice == 'rock')){
-                    computerWins();
-                } else if ((currentCompChoice == 'paper' && currentHumanChoice == 'paper')){
-                    return console.log('this round is a tie')
-                }
-
-                if (currentCompChoice == 'scissors' && currentHumanChoice == 'rock'){
-                    humanWins();
-                } else if ((currentCompChoice == 'scissors' && currentHumanChoice == 'paper')){
-                    computerWins();
-                } else if ((currentCompChoice == 'scissors' && currentHumanChoice == 'scissors')){
-                    return console.log('this round is a tie')
-                }
-            }
-
-            for (i=0;i <5; i++){
-                playRound()}
-
-            if (humanScore > computerScore){
-                return console.log('You win the game.')
-            } else if (computerScore > humanScore){
-                return console.log('I win.')
-            } else {return console.log('Our scores are equal, we draw.')}
-            
-        }
-        playGame()
-
-
     </script>
 </body>
 </html>
